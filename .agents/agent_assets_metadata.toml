@@ -1,0 +1,499 @@
+uploads = []
+
+[[generated]]
+id = "1pWAC5chFXrBi7nU_CF-K"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/01-roof-before.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ovtkr9Z7-UD-uyV-M7EMN"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/01-roof-after.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "aB8g7aZcISgI0jaoyCd7i"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/02-siding-before.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "grTc3M8XyqJOOC1hwrHLn"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/02-siding-after.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "9GXtZKbUdPkX32ro_cb5Y"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/03-windows-before.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "egmBFaP59tkWr7_vCmb4_"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/03-windows-after.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "6FZ2gqbvhib9x_Y4UkE6U"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/04-hardie-before.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "iwvUSqfFZdTj7JlO_IHJ6"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/04-hardie-after.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ARfMzWPj_OrT1uTxLCQYp"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/01-roof-ba.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "lyILuMeenBaqu2Hj4uHCw"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/02-siding-ba.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "CWthHA7471eojIttBw3IU"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/03-windows-ba.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "TPMxXzALvAGq-0Wtwk_4N"
+uri = "file://artifacts/kimdasa-web/src/assets/projects/04-hardie-ba.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "LP8Qx6L5B9GM2F0bNACxF"
+uri = "file://artifacts/kimdasa-web/src/assets/logo-icon.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "6Ll2oBxSuP9jXyXAuQ8B6"
+uri = "file://attached_assets/ads/kimdasa-logo-square.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "EwAfWdIRRuyg8NkEvyaRw"
+uri = "file://attached_assets/ads/kimdasa-ad-square.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "hFw_77tkA7BS5S6MEdXye"
+uri = "file://attached_assets/ads/kimdasa-ad-horizontal.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "UNoaX8JryUqCYAJ0InBm2"
+uri = "file://attached_assets/ads/logo-v2-navy.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "HQjiwrorq_Q6m298ybPzp"
+uri = "file://attached_assets/ads/logo-v3-gold.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "WMMq694qtgTCtLsCVPhyp"
+uri = "file://attached_assets/ads/logo-v4-orange.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "z-eXL2fMeOfOzDug2Z0Ae"
+uri = "file://attached_assets/ads/logo-hq-v1.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "9klcdbn9THf2jvcq-1Jbt"
+uri = "file://attached_assets/ads/logo-hq-v2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "zwV32FXARvhOg-dOYHKqV"
+uri = "file://attached_assets/ads/logo-hq-v3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "7zuNNM6vluJMAAU76xPC2"
+uri = "file://attached_assets/ads/logo-pro-v1.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "onvbhN4yRUXkDddoEaEr9"
+uri = "file://attached_assets/ads/logo-pro-v2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "eoWL65Q1H3ZhHqZnffMnZ"
+uri = "file://attached_assets/ads/logo-pro-v3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "q-OefBsWTTiT7TTKTv6yC"
+uri = "file://attached_assets/ads/logo-final-v1.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "koXNoAwCvo91k9ogSPm-a"
+uri = "file://attached_assets/ads/logo-final-v2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "c4HTBWNosq46OsVm4q3eS"
+uri = "file://attached_assets/ads/logo-final-v3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "83Am-ITY8vwQEFOxB3Vea"
+uri = "file://attached_assets/ads/icon-hardhat.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "u45Yi0vybQ9qFLVDMigtA"
+uri = "file://attached_assets/ads/icon-house.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "2F1aXTQBdRwngI5GvEDoF"
+uri = "file://attached_assets/ads/icon-arrow-roof.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "YXOXh-ueR9FSgIgEyipv0"
+uri = "file://attached_assets/kimdasa-mobile-icon.png"
+type = "image"
+title = "kimdasa mobile app icon"
+
+[[outputs]]
+id = "9wVoHkYl-HHGusfqwXwe1"
+uri = "file://exports/beforeafter/beforeafter_1.jpg"
+type = "image"
+title = "Antes/Después #1"
+
+[[outputs]]
+id = "-DqQ2L4z_S9Bkum79e_-d"
+uri = "file://exports/beforeafter/beforeafter_2.jpg"
+type = "image"
+title = "Antes/Después #2"
+
+[[outputs]]
+id = "Jqz_tK-ZyOKaFD_Vb4wSM"
+uri = "file://exports/beforeafter/beforeafter_3.jpg"
+type = "image"
+title = "Antes/Después #3"
+
+[[outputs]]
+id = "l4u0_p2s19g0MdaFqz7mb"
+uri = "file://exports/beforeafter/beforeafter_4.jpg"
+type = "image"
+title = "Antes/Después #4"
+
+[[outputs]]
+id = "SIqYcgh6PwXwyLRU2cJhP"
+uri = "file://exports/beforeafter/beforeafter_5.jpg"
+type = "image"
+title = "Antes/Después #5"
+
+[[outputs]]
+id = "PbpvkDgk7siNo4Uz-EWvE"
+uri = "file://exports/beforeafter/beforeafter_6.jpg"
+type = "image"
+title = "Antes/Después #6"
+
+[[outputs]]
+id = "tuBkWaG2DevDzlB6Df4Nx"
+uri = "file://exports/beforeafter/beforeafter_7.jpg"
+type = "image"
+title = "Antes/Después #7"
+
+[[outputs]]
+id = "zQYCeSZ2OIv2RGvE6k83I"
+uri = "file://exports/beforeafter/beforeafter_8.jpg"
+type = "image"
+title = "Antes/Después #8"
+
+[[outputs]]
+id = "up6sqcf9RmOnVAeVM626M"
+uri = "file://exports/fotos/proyecto1_ANTES.jpg"
+type = "image"
+title = "Proyecto 1 — ANTES"
+
+[[outputs]]
+id = "T-jFHVqURVWn5D53LhtIB"
+uri = "file://exports/fotos/proyecto1_DESPUES.jpg"
+type = "image"
+title = "Proyecto 1 — DESPUÉS"
+
+[[outputs]]
+id = "3RAtML6uv0IfEQy4HbQpx"
+uri = "file://exports/fotos/proyecto2_ANTES.jpg"
+type = "image"
+title = "Proyecto 2 — ANTES"
+
+[[outputs]]
+id = "H3lO6P_xbHkdIBffMmI89"
+uri = "file://exports/fotos/proyecto2_DESPUES.jpg"
+type = "image"
+title = "Proyecto 2 — DESPUÉS"
+
+[[outputs]]
+id = "7lu0LqdW6D3YmVh1B3IP0"
+uri = "file://exports/fotos/proyecto3_ANTES.jpg"
+type = "image"
+title = "Proyecto 3 — ANTES"
+
+[[outputs]]
+id = "4LXJW2bCP1RDXXRBDNVJM"
+uri = "file://exports/fotos/proyecto3_DESPUES.jpg"
+type = "image"
+title = "Proyecto 3 — DESPUÉS"
+
+[[outputs]]
+id = "vWONAL4IWQkY_Q3N9MCpa"
+uri = "file://exports/fotos/proyecto4_ANTES.jpg"
+type = "image"
+title = "Proyecto 4 — ANTES"
+
+[[outputs]]
+id = "m7o5gIgGhCkm-JfQpynKj"
+uri = "file://exports/fotos/proyecto4_DESPUES.jpg"
+type = "image"
+title = "Proyecto 4 — DESPUÉS"
+
+[[outputs]]
+id = "m3_lb1ZzIvRjjj2n--Uk0"
+uri = "file://exports/fotos/proyecto5_ANTES.jpg"
+type = "image"
+title = "Proyecto 5 — ANTES"
+
+[[outputs]]
+id = "uscCjiPFs8cIInzjxZ3OX"
+uri = "file://exports/fotos/proyecto5_DESPUES.jpg"
+type = "image"
+title = "Proyecto 5 — DESPUÉS"
+
+[[outputs]]
+id = "R6NeqfjL6ianjCY_hPDK-"
+uri = "file://exports/fotos/proyecto6_ANTES.jpg"
+type = "image"
+title = "Proyecto 6 — ANTES"
+
+[[outputs]]
+id = "5n7BIqjsYskymw_b-f8yk"
+uri = "file://exports/fotos/proyecto6_DESPUES.jpg"
+type = "image"
+title = "Proyecto 6 — DESPUÉS"
+
+[[outputs]]
+id = "Mfg-3qAkY5VAJm0X8Frae"
+uri = "file://exports/fotos/proyecto7_ANTES.jpg"
+type = "image"
+title = "Proyecto 7 — ANTES"
+
+[[outputs]]
+id = "etdwO1tkTfhk7407926wG"
+uri = "file://exports/fotos/proyecto7_DESPUES.jpg"
+type = "image"
+title = "Proyecto 7 — DESPUÉS"
+
+[[outputs]]
+id = "2MJXQDQTLn3v2ggSOcYlx"
+uri = "file://exports/fotos/proyecto8_ANTES.jpg"
+type = "image"
+title = "Proyecto 8 — ANTES"
+
+[[outputs]]
+id = "cQOgyXy1CIdNWkrMGGA2Z"
+uri = "file://exports/fotos/proyecto8_DESPUES.jpg"
+type = "image"
+title = "Proyecto 8 — DESPUÉS"
+
+[[outputs]]
+id = "lnWPlcBuXPxpwkgU_f0G8"
+uri = "file://attached_assets/ads/kimdasa-ad-square.png"
+type = "image"
+title = "Imagen cuadrada (1:1) — para Google Ads"
+
+[[outputs]]
+id = "A4dcpp0q5jmWCM9Uuc9Xm"
+uri = "file://attached_assets/ads/kimdasa-ad-horizontal.png"
+type = "image"
+title = "Imagen horizontal (16:9) — para Google Ads"
+
+[[outputs]]
+id = "L84ZDZeljbAmLWqpgYaCd"
+uri = "file://attached_assets/ads/kimdasa-logo-square.png"
+type = "image"
+title = "Logo cuadrado (1:1) — para Google Ads"
+
+[[outputs]]
+id = "cZPkMXZNzy9M8muMtSoSB"
+uri = "file://attached_assets/ads/logo-v2-navy.png"
+type = "image"
+title = "Opción 1 — Azul navy"
+
+[[outputs]]
+id = "qNNx5OavjO-kuhKSNpvAl"
+uri = "file://attached_assets/ads/logo-v3-gold.png"
+type = "image"
+title = "Opción 2 — Dorado"
+
+[[outputs]]
+id = "5VXMif15jQfwzt3MKArrR"
+uri = "file://attached_assets/ads/logo-v4-orange.png"
+type = "image"
+title = "Opción 3 — Naranja"
+
+[[outputs]]
+id = "fw0Rood17bPFHii3KMrUJ"
+uri = "file://attached_assets/ads/logo-pro-v1.png"
+type = "image"
+title = "Opción 1 — Negro y naranja"
+
+[[outputs]]
+id = "oEmHfWONGaDhv89qXoN-g"
+uri = "file://attached_assets/ads/logo-pro-v2.png"
+type = "image"
+title = "Opción 2 — Hexágono industrial"
+
+[[outputs]]
+id = "fN6Xl6LefcDdz_ym5z_GI"
+uri = "file://attached_assets/ads/logo-pro-v3.png"
+type = "image"
+title = "Opción 3 — Badge navy"
+
+[[outputs]]
+id = "ztgRnAXOBRuGgj554YJFf"
+uri = "file://attached_assets/ads/logo-final-v1.png"
+type = "image"
+title = "Opción 1 — Sello circular"
+
+[[outputs]]
+id = "0erKB8gBgJqgbyDrx1MU9"
+uri = "file://attached_assets/ads/logo-final-v2.png"
+type = "image"
+title = "Opción 2 — K tipográfico"
+
+[[outputs]]
+id = "NdIsfOnPdj-trsOkDJXlX"
+uri = "file://attached_assets/ads/logo-final-v3.png"
+type = "image"
+title = "Opción 3 — Diagonal bicolor"
+
+[[outputs]]
+id = "6894yeApfffRn_-_Wh2uC"
+uri = "file://attached_assets/ads/icon-hardhat.png"
+type = "image"
+title = "Casco de obra — significa construcción"
+
+[[outputs]]
+id = "6fz5eel8L-MZRVvhNI0BC"
+uri = "file://attached_assets/ads/icon-house.png"
+type = "image"
+title = "Casa — significa hogar protegido"
+
+[[outputs]]
+id = "vKiagXNlcK2aM0ZlPsNLM"
+uri = "file://attached_assets/ads/icon-arrow-roof.png"
+type = "image"
+title = "Flecha + techo — significa mejora del hogar"
+
+[[outputs]]
+id = "PSVnXPb5GC6JjJFmmri12"
+uri = "file://attached_assets/ads/kimdasa-logo-final.png"
+type = "image"
+title = "Logo Kimdasa — K con techo"
+
+[[outputs]]
+id = "7t1KwmL1VlPMf7TBexyIA"
+uri = "file://attached_assets/ads/logo-a.png"
+type = "image"
+title = "Opción A — Naranja sólido"
+
+[[outputs]]
+id = "Yfm9aJNq1OHgP7r3XaOrR"
+uri = "file://attached_assets/ads/logo-b.png"
+type = "image"
+title = "Opción B — Círculo oscuro"
+
+[[outputs]]
+id = "GZuUBHW44kEZ3DjIGilxv"
+uri = "file://attached_assets/ads/logo-c.png"
+type = "image"
+title = "Opción C — Cuadrado redondeado"
+
+[[outputs]]
+id = "V7C14ai7MfXWcplVfJ0_6"
+uri = "file://attached_assets/ads/kimdasa-logo-black.png"
+type = "image"
+title = "Logo Kimdasa — fondo negro"
+
+[[outputs]]
+id = "8P8Ry21yX21obS8olansQ"
+uri = "file://attached_assets/ads/ad-horizontal-1200x628.jpg"
+type = "image"
+title = "Imagen horizontal 16:9 — 1200x628px"
+
+[[outputs]]
+id = "XNdLn-cGc9eDKupCI-mwZ"
+uri = "file://attached_assets/ads/ad-square-1200x1200.jpg"
+type = "image"
+title = "Imagen cuadrada 1:1 — 1200x1200px"
+
+[[outputs]]
+id = "1Sl3tyw2VtZM-xqqAmbA5"
+uri = "file://attached_assets/ads/v2-house1-horizontal.jpg"
+type = "image"
+title = "Casa gris — horizontal 16:9"
+
+[[outputs]]
+id = "3mCqP6a2YdKZ1_1ME_oCz"
+uri = "file://attached_assets/ads/v2-house1-square.jpg"
+type = "image"
+title = "Casa gris — cuadrada 1:1"
+
+[[outputs]]
+id = "a4ynV7I3WH-qbx9zxwNvx"
+uri = "file://attached_assets/ads/v2-house2-horizontal.jpg"
+type = "image"
+title = "Renovación otoñal — horizontal 16:9"
+
+[[outputs]]
+id = "UyTKcnv6EUpHciVOIPJyU"
+uri = "file://attached_assets/ads/v2-house2-square.jpg"
+type = "image"
+title = "Renovación otoñal — cuadrada 1:1"
+
+[[outputs]]
+id = "qZrHDNVQizA2zxAHT4jph"
+uri = "file://kimdasa-source.zip"
+type = "unspecified"
+title = "Kimdasa — Código Fuente Completo"
