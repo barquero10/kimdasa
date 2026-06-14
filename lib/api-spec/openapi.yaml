@@ -1,0 +1,2548 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: Kimdasa Construction Platform API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: auth
+    description: Authentication
+  - name: leads
+    description: Lead management
+  - name: customers
+    description: Customer management
+  - name: estimates
+    description: Estimate management
+  - name: jobs
+    description: Job management
+  - name: follow-ups
+    description: Follow-up scheduling
+  - name: tasks
+    description: Task management
+  - name: market-prices
+    description: Market pricing database
+  - name: conversations
+    description: AI conversation history
+  - name: ai-notes
+    description: AI-generated notes
+  - name: photos
+    description: Uploaded photos
+  - name: virtual-agents
+    description: Virtual agent configuration
+  - name: users
+    description: User management
+  - name: site-config
+    description: Site configuration
+  - name: ai
+    description: AI chat endpoints
+  - name: google
+    description: Google Business / Places proxy
+  - name: appointments
+    description: Online appointment booking for free estimates
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /auth/login:
+    post:
+      operationId: login
+      tags: [auth]
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "401":
+          description: Invalid credentials
+
+  /auth/me:
+    get:
+      operationId: getMe
+      tags: [auth]
+      summary: Get current user
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /leads:
+    get:
+      operationId: getLeads
+      tags: [leads]
+      summary: List all leads
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of leads
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Lead"
+    post:
+      operationId: createLead
+      tags: [leads]
+      summary: Create a new lead (public endpoint for website form)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateLeadRequest"
+      responses:
+        "201":
+          description: Lead created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Lead"
+
+  /leads/{id}:
+    get:
+      operationId: getLead
+      tags: [leads]
+      summary: Get a lead by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Lead
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Lead"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateLead
+      tags: [leads]
+      summary: Update a lead
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateLeadRequest"
+      responses:
+        "200":
+          description: Updated lead
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Lead"
+    delete:
+      operationId: deleteLead
+      tags: [leads]
+      summary: Delete a lead
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /customers:
+    get:
+      operationId: getCustomers
+      tags: [customers]
+      summary: List all customers
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+    post:
+      operationId: createCustomer
+      tags: [customers]
+      summary: Create a customer
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCustomerRequest"
+      responses:
+        "201":
+          description: Customer created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+
+  /customers/{id}:
+    get:
+      operationId: getCustomer
+      tags: [customers]
+      summary: Get a customer by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+    patch:
+      operationId: updateCustomer
+      tags: [customers]
+      summary: Update a customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCustomerRequest"
+      responses:
+        "200":
+          description: Updated customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+    delete:
+      operationId: deleteCustomer
+      tags: [customers]
+      summary: Delete a customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /estimates:
+    get:
+      operationId: getEstimates
+      tags: [estimates]
+      summary: List all estimates
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of estimates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Estimate"
+    post:
+      operationId: createEstimate
+      tags: [estimates]
+      summary: Create an estimate
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEstimateRequest"
+      responses:
+        "201":
+          description: Estimate created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estimate"
+
+  /estimates/calculate:
+    post:
+      operationId: calculateEstimate
+      tags: [estimates]
+      summary: Calculate estimate cost breakdown
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CalculateEstimateRequest"
+      responses:
+        "200":
+          description: Cost breakdown
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EstimateCalculation"
+
+  /estimates/{id}:
+    get:
+      operationId: getEstimate
+      tags: [estimates]
+      summary: Get an estimate by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Estimate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estimate"
+    patch:
+      operationId: updateEstimate
+      tags: [estimates]
+      summary: Update an estimate
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEstimateRequest"
+      responses:
+        "200":
+          description: Updated estimate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estimate"
+    delete:
+      operationId: deleteEstimate
+      tags: [estimates]
+      summary: Delete an estimate
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /jobs:
+    get:
+      operationId: getJobs
+      tags: [jobs]
+      summary: List all jobs
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Job"
+    post:
+      operationId: createJob
+      tags: [jobs]
+      summary: Create a job
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateJobRequest"
+      responses:
+        "201":
+          description: Job created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+
+  /jobs/{id}:
+    get:
+      operationId: getJob
+      tags: [jobs]
+      summary: Get a job by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Job
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+    patch:
+      operationId: updateJob
+      tags: [jobs]
+      summary: Update a job
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateJobRequest"
+      responses:
+        "200":
+          description: Updated job
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+    delete:
+      operationId: deleteJob
+      tags: [jobs]
+      summary: Delete a job
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /follow-ups:
+    get:
+      operationId: getFollowUps
+      tags: [follow-ups]
+      summary: List follow-ups
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of follow-ups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FollowUp"
+    post:
+      operationId: createFollowUp
+      tags: [follow-ups]
+      summary: Create a follow-up
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateFollowUpRequest"
+      responses:
+        "201":
+          description: Follow-up created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowUp"
+
+  /follow-ups/{id}:
+    patch:
+      operationId: updateFollowUp
+      tags: [follow-ups]
+      summary: Update a follow-up
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateFollowUpRequest"
+      responses:
+        "200":
+          description: Updated follow-up
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowUp"
+    delete:
+      operationId: deleteFollowUp
+      tags: [follow-ups]
+      summary: Delete a follow-up
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /tasks:
+    get:
+      operationId: getTasks
+      tags: [tasks]
+      summary: List tasks
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+    post:
+      operationId: createTask
+      tags: [tasks]
+      summary: Create a task
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTaskRequest"
+      responses:
+        "201":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+
+  /tasks/{id}:
+    patch:
+      operationId: updateTask
+      tags: [tasks]
+      summary: Update a task
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTaskRequest"
+      responses:
+        "200":
+          description: Updated task
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+    delete:
+      operationId: deleteTask
+      tags: [tasks]
+      summary: Delete a task
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /market-prices:
+    get:
+      operationId: getMarketPrices
+      tags: [market-prices]
+      summary: List market prices (public)
+      responses:
+        "200":
+          description: Market prices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MarketPrice"
+    post:
+      operationId: createMarketPrice
+      tags: [market-prices]
+      summary: Create a market price entry
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMarketPriceRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MarketPrice"
+
+  /market-prices/staleness:
+    get:
+      operationId: getMarketPriceStaleness
+      tags: [market-prices]
+      summary: Get stale price entries (older than 30 days)
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Staleness report
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StalenessReport"
+
+  /market-prices/{id}:
+    patch:
+      operationId: updateMarketPrice
+      tags: [market-prices]
+      summary: Update a market price
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMarketPriceRequest"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MarketPrice"
+    delete:
+      operationId: deleteMarketPrice
+      tags: [market-prices]
+      summary: Delete a market price
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /conversations:
+    get:
+      operationId: getConversations
+      tags: [conversations]
+      summary: Get conversation history
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: leadId
+          in: query
+          schema:
+            type: integer
+        - name: customerId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Conversations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Conversation"
+    post:
+      operationId: createConversation
+      tags: [conversations]
+      summary: Save a conversation message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateConversationRequest"
+      responses:
+        "201":
+          description: Saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Conversation"
+
+  /ai-notes:
+    get:
+      operationId: getAiNotes
+      tags: [ai-notes]
+      summary: Get AI notes
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: leadId
+          in: query
+          schema:
+            type: integer
+        - name: customerId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Notes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AiNote"
+    post:
+      operationId: createAiNote
+      tags: [ai-notes]
+      summary: Create an AI note
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAiNoteRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AiNote"
+
+  /ai-notes/{id}:
+    delete:
+      operationId: deleteAiNote
+      tags: [ai-notes]
+      summary: Delete an AI note
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /photos:
+    get:
+      operationId: getPhotos
+      tags: [photos]
+      summary: Get uploaded photos
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: leadId
+          in: query
+          schema:
+            type: integer
+        - name: customerId
+          in: query
+          schema:
+            type: integer
+        - name: jobId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Photos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UploadedPhoto"
+    post:
+      operationId: createPhoto
+      tags: [photos]
+      summary: Save photo metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePhotoRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadedPhoto"
+
+  /photos/{id}:
+    delete:
+      operationId: deletePhoto
+      tags: [photos]
+      summary: Delete a photo
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /virtual-agents:
+    get:
+      operationId: getVirtualAgents
+      tags: [virtual-agents]
+      summary: List virtual agents
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VirtualAgent"
+    post:
+      operationId: createVirtualAgent
+      tags: [virtual-agents]
+      summary: Create a virtual agent
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateVirtualAgentRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VirtualAgent"
+
+  /virtual-agents/{id}:
+    patch:
+      operationId: updateVirtualAgent
+      tags: [virtual-agents]
+      summary: Update a virtual agent
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateVirtualAgentRequest"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VirtualAgent"
+
+  /users:
+    get:
+      operationId: getUsers
+      tags: [users]
+      summary: List users (admin only)
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      operationId: createUser
+      tags: [users]
+      summary: Create a user (admin only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /users/{id}:
+    patch:
+      operationId: updateUser
+      tags: [users]
+      summary: Update a user (admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequest"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      operationId: deleteUser
+      tags: [users]
+      summary: Delete a user (admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /site-config:
+    get:
+      operationId: getSiteConfig
+      tags: [site-config]
+      summary: Get site configuration (public)
+      responses:
+        "200":
+          description: Config map
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                  nullable: true
+
+  /site-config/{key}:
+    put:
+      operationId: updateSiteConfig
+      tags: [site-config]
+      summary: Update a site config key
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSiteConfigRequest"
+      responses:
+        "200":
+          description: Updated config
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteConfig"
+
+  /google/reviews:
+    get:
+      operationId: getGoogleReviews
+      tags: [google]
+      summary: Get live Google Business reviews and rating (server-side proxy)
+      responses:
+        "200":
+          description: Google reviews and rating
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleReviewsResponse"
+        "404":
+          description: Place ID not configured
+        "503":
+          description: Google API key not configured
+
+  /ai/chat:
+    post:
+      operationId: aiChat
+      tags: [ai]
+      summary: Chat with an AI assistant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AiChatRequest"
+      responses:
+        "200":
+          description: AI response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AiChatResponse"
+
+  /ai/photo-estimate:
+    post:
+      operationId: aiPhotoEstimate
+      tags: [ai]
+      summary: Generate a preliminary AI estimate from project photos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AiPhotoEstimateRequest"
+      responses:
+        "200":
+          description: AI photo estimate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AiPhotoEstimateResponse"
+
+  /appointments/slots:
+    get:
+      operationId: getAppointmentSlots
+      tags: [appointments]
+      summary: Get available time slots for a given date
+      parameters:
+        - in: query
+          name: date
+          required: true
+          schema:
+            type: string
+          description: Date in YYYY-MM-DD format
+      responses:
+        "200":
+          description: Available slots
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AvailableSlotsResponse"
+
+  /appointments:
+    get:
+      operationId: getAppointments
+      tags: [appointments]
+      summary: List all appointments (admin)
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of appointments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Appointment"
+    post:
+      operationId: createAppointment
+      tags: [appointments]
+      summary: Book a new appointment (public)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAppointmentBody"
+      responses:
+        "201":
+          description: Appointment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+
+  /appointments/{id}:
+    patch:
+      operationId: updateAppointment
+      tags: [appointments]
+      summary: Update appointment status or notes (admin)
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [pending, confirmed, cancelled, completed]
+                notes:
+                  type: string
+      responses:
+        "200":
+          description: Updated appointment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+    delete:
+      operationId: cancelAppointment
+      tags: [appointments]
+      summary: Cancel an appointment (admin)
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Cancelled
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+        - success
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        user:
+          $ref: "#/components/schemas/User"
+      required:
+        - token
+        - user
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+          enum: [admin, manager, staff]
+        dashboardLanguage:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - email
+        - name
+        - role
+        - createdAt
+        - updatedAt
+
+    CreateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        passwordHash:
+          type: string
+          description: Plain password, will be hashed server-side
+        name:
+          type: string
+        role:
+          type: string
+          enum: [admin, manager, staff]
+      required:
+        - email
+        - passwordHash
+        - name
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+          enum: [admin, manager, staff]
+
+    Lead:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        serviceType:
+          type: string
+          nullable: true
+        urgency:
+          type: string
+          nullable: true
+        budgetApprox:
+          type: string
+          nullable: true
+        bestContactTime:
+          type: string
+          nullable: true
+        comments:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [new_lead, contacted, estimate_sent, approved, in_progress, completed, lost]
+        language:
+          type: string
+        source:
+          type: string
+          nullable: true
+        assignedTo:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - status
+        - language
+        - createdAt
+        - updatedAt
+
+    CreateLeadRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        serviceType:
+          type: string
+        urgency:
+          type: string
+        budgetApprox:
+          type: string
+        bestContactTime:
+          type: string
+        comments:
+          type: string
+        status:
+          type: string
+          enum: [new_lead, contacted, estimate_sent, approved, in_progress, completed, lost]
+        language:
+          type: string
+        source:
+          type: string
+        assignedTo:
+          type: string
+      required:
+        - name
+
+    UpdateLeadRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        serviceType:
+          type: string
+        urgency:
+          type: string
+        budgetApprox:
+          type: string
+        bestContactTime:
+          type: string
+        comments:
+          type: string
+        status:
+          type: string
+          enum: [new_lead, contacted, estimate_sent, approved, in_progress, completed, lost]
+        language:
+          type: string
+        source:
+          type: string
+        assignedTo:
+          type: string
+
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+          nullable: true
+        name:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - createdAt
+        - updatedAt
+
+    CreateCustomerRequest:
+      type: object
+      properties:
+        leadId:
+          type: integer
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        notes:
+          type: string
+      required:
+        - name
+
+    Estimate:
+      type: object
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+          nullable: true
+        customerId:
+          type: integer
+          nullable: true
+        serviceType:
+          type: string
+        measurements:
+          type: string
+          nullable: true
+        difficulty:
+          type: string
+          nullable: true
+        height:
+          type: string
+          nullable: true
+        roofPitch:
+          type: string
+          nullable: true
+        materials:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        laborCost:
+          type: string
+          nullable: true
+        materialCost:
+          type: string
+          nullable: true
+        overhead:
+          type: string
+          nullable: true
+        profitMargin:
+          type: string
+          nullable: true
+        internalCost:
+          type: string
+          nullable: true
+        recommendedPrice:
+          type: string
+          nullable: true
+        clientPrice:
+          type: string
+          nullable: true
+        marginPercent:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [draft, sent, approved, rejected]
+        notes:
+          type: string
+          nullable: true
+        internalNotes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - serviceType
+        - status
+        - createdAt
+        - updatedAt
+
+    CreateEstimateRequest:
+      type: object
+      properties:
+        leadId:
+          type: integer
+        customerId:
+          type: integer
+        serviceType:
+          type: string
+        measurements:
+          type: string
+        difficulty:
+          type: string
+        height:
+          type: string
+        roofPitch:
+          type: string
+        materials:
+          type: string
+        region:
+          type: string
+        laborCost:
+          type: string
+        materialCost:
+          type: string
+        overhead:
+          type: string
+        profitMargin:
+          type: string
+        internalCost:
+          type: string
+        recommendedPrice:
+          type: string
+        clientPrice:
+          type: string
+        marginPercent:
+          type: string
+        status:
+          type: string
+          enum: [draft, sent, approved, rejected]
+        notes:
+          type: string
+        internalNotes:
+          type: string
+      required:
+        - serviceType
+
+    CalculateEstimateRequest:
+      type: object
+      properties:
+        serviceType:
+          type: string
+        squareFootage:
+          type: number
+        difficulty:
+          type: string
+          enum: [easy, medium, hard]
+        region:
+          type: string
+          enum: [new_jersey, pennsylvania]
+      required:
+        - serviceType
+
+    EstimateCalculation:
+      type: object
+      properties:
+        serviceType:
+          type: string
+        squareFootage:
+          type: number
+        difficulty:
+          type: string
+        region:
+          type: string
+        materialCost:
+          type: string
+        laborCost:
+          type: string
+        overhead:
+          type: string
+        profitMargin:
+          type: string
+        internalCost:
+          type: string
+        recommendedPrice:
+          type: string
+        marginPercent:
+          type: string
+        basePriceUsed:
+          nullable: true
+          type: object
+          properties:
+            category:
+              type: string
+            avgPrice:
+              type: string
+      required:
+        - serviceType
+        - materialCost
+        - laborCost
+        - overhead
+        - profitMargin
+        - internalCost
+        - recommendedPrice
+        - marginPercent
+
+    Job:
+      type: object
+      properties:
+        id:
+          type: integer
+        customerId:
+          type: integer
+          nullable: true
+        estimateId:
+          type: integer
+          nullable: true
+        title:
+          type: string
+        serviceType:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [scheduled, in_progress, completed, on_hold, cancelled]
+        startDate:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          nullable: true
+        crewNotes:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - status
+        - createdAt
+        - updatedAt
+
+    CreateJobRequest:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        estimateId:
+          type: integer
+        title:
+          type: string
+        serviceType:
+          type: string
+        status:
+          type: string
+          enum: [scheduled, in_progress, completed, on_hold, cancelled]
+        startDate:
+          type: string
+        endDate:
+          type: string
+        crewNotes:
+          type: string
+        notes:
+          type: string
+      required:
+        - title
+
+    FollowUp:
+      type: object
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+          nullable: true
+        customerId:
+          type: integer
+          nullable: true
+        scheduledAt:
+          type: string
+          format: date-time
+        notes:
+          type: string
+          nullable: true
+        completed:
+          type: boolean
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        assignedTo:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - scheduledAt
+        - completed
+        - createdAt
+        - updatedAt
+
+    CreateFollowUpRequest:
+      type: object
+      properties:
+        leadId:
+          type: integer
+        customerId:
+          type: integer
+        scheduledAt:
+          type: string
+          format: date-time
+        notes:
+          type: string
+        completed:
+          type: boolean
+        completedAt:
+          type: string
+          format: date-time
+        assignedTo:
+          type: string
+      required:
+        - scheduledAt
+
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+          nullable: true
+        customerId:
+          type: integer
+          nullable: true
+        jobId:
+          type: integer
+          nullable: true
+        title:
+          type: string
+        description:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [pending, in_progress, completed]
+        priority:
+          type: string
+          enum: [low, medium, high]
+        dueDate:
+          type: string
+          format: date-time
+          nullable: true
+        assignedTo:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - status
+        - priority
+        - createdAt
+        - updatedAt
+
+    CreateTaskRequest:
+      type: object
+      properties:
+        leadId:
+          type: integer
+        customerId:
+          type: integer
+        jobId:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [pending, in_progress, completed]
+        priority:
+          type: string
+          enum: [low, medium, high]
+        dueDate:
+          type: string
+          format: date-time
+        assignedTo:
+          type: string
+      required:
+        - title
+
+    MarketPrice:
+      type: object
+      properties:
+        id:
+          type: integer
+        category:
+          type: string
+        region:
+          type: string
+          enum: [new_jersey, pennsylvania]
+        priceType:
+          type: string
+          enum: [installed, material, labor]
+        unit:
+          type: string
+        minPrice:
+          type: string
+          nullable: true
+        avgPrice:
+          type: string
+          nullable: true
+        premiumPrice:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - category
+        - priceType
+        - region
+        - unit
+        - updatedAt
+        - createdAt
+
+    CreateMarketPriceRequest:
+      type: object
+      properties:
+        category:
+          type: string
+        region:
+          type: string
+          enum: [new_jersey, pennsylvania]
+        priceType:
+          type: string
+          enum: [installed, material, labor]
+        unit:
+          type: string
+        minPrice:
+          type: string
+        avgPrice:
+          type: string
+        premiumPrice:
+          type: string
+        notes:
+          type: string
+        source:
+          type: string
+      required:
+        - category
+        - region
+
+    StalenessReport:
+      type: object
+      properties:
+        staleCount:
+          type: integer
+        staleItems:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              category:
+                type: string
+              region:
+                type: string
+              updatedAt:
+                type: string
+                format: date-time
+      required:
+        - staleCount
+        - staleItems
+
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+          nullable: true
+        customerId:
+          type: integer
+          nullable: true
+        agentType:
+          type: string
+        language:
+          type: string
+        role:
+          type: string
+          enum: [user, assistant, system]
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - agentType
+        - language
+        - role
+        - content
+        - createdAt
+
+    CreateConversationRequest:
+      type: object
+      properties:
+        leadId:
+          type: integer
+        customerId:
+          type: integer
+        agentType:
+          type: string
+        language:
+          type: string
+        role:
+          type: string
+          enum: [user, assistant, system]
+        content:
+          type: string
+      required:
+        - agentType
+        - role
+        - content
+
+    AiNote:
+      type: object
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+          nullable: true
+        customerId:
+          type: integer
+          nullable: true
+        jobId:
+          type: integer
+          nullable: true
+        agentType:
+          type: string
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - agentType
+        - content
+        - createdAt
+
+    CreateAiNoteRequest:
+      type: object
+      properties:
+        leadId:
+          type: integer
+        customerId:
+          type: integer
+        jobId:
+          type: integer
+        agentType:
+          type: string
+        content:
+          type: string
+      required:
+        - agentType
+        - content
+
+    UploadedPhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+          nullable: true
+        customerId:
+          type: integer
+          nullable: true
+        jobId:
+          type: integer
+          nullable: true
+        filename:
+          type: string
+        url:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - filename
+        - createdAt
+
+    CreatePhotoRequest:
+      type: object
+      properties:
+        leadId:
+          type: integer
+        customerId:
+          type: integer
+        jobId:
+          type: integer
+        filename:
+          type: string
+        url:
+          type: string
+        description:
+          type: string
+      required:
+        - filename
+
+    VirtualAgent:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        agentType:
+          type: string
+        systemPrompt:
+          type: string
+          nullable: true
+        language:
+          type: string
+        isActive:
+          type: boolean
+        config:
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - agentType
+        - language
+        - isActive
+        - createdAt
+        - updatedAt
+
+    CreateVirtualAgentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        agentType:
+          type: string
+        systemPrompt:
+          type: string
+        language:
+          type: string
+        isActive:
+          type: boolean
+        config:
+          type: object
+      required:
+        - name
+        - agentType
+
+    SiteConfig:
+      type: object
+      properties:
+        id:
+          type: integer
+        key:
+          type: string
+        value:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - key
+        - updatedAt
+
+    UpdateSiteConfigRequest:
+      type: object
+      properties:
+        value:
+          type: string
+        description:
+          type: string
+
+    AiChatRequest:
+      type: object
+      properties:
+        agentType:
+          type: string
+          enum: [seller, sales, estimator, project_manager, admin, marketing]
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+                enum: [user, assistant]
+              content:
+                type: string
+            required:
+              - role
+              - content
+        leadId:
+          type: integer
+        customerId:
+          type: integer
+        language:
+          type: string
+      required:
+        - messages
+
+    AiChatResponse:
+      type: object
+      properties:
+        reply:
+          type: string
+        agentType:
+          type: string
+        language:
+          type: string
+      required:
+        - reply
+        - agentType
+        - language
+
+    GoogleReviewsResponse:
+      type: object
+      properties:
+        placeId:
+          type: string
+        name:
+          type: string
+        rating:
+          type: number
+          description: Overall Google rating (e.g. 4.9)
+        userRatingsTotal:
+          type: number
+          description: Total number of Google reviews
+        reviewUrl:
+          type: string
+          description: URL to leave a new Google review
+        reviews:
+          type: array
+          items:
+            type: object
+            properties:
+              authorName:
+                type: string
+              authorPhoto:
+                type: string
+                nullable: true
+              rating:
+                type: number
+              text:
+                type: string
+              relativeTime:
+                type: string
+              time:
+                type: number
+            required:
+              - authorName
+              - rating
+              - text
+              - relativeTime
+              - time
+      required:
+        - placeId
+        - name
+        - rating
+        - userRatingsTotal
+        - reviewUrl
+        - reviews
+
+    AvailableSlotsResponse:
+      type: object
+      properties:
+        date:
+          type: string
+        slots:
+          type: array
+          items:
+            type: string
+        unavailable:
+          type: boolean
+      required:
+        - date
+        - slots
+
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        service:
+          type: string
+        preferredDate:
+          type: string
+        timeSlot:
+          type: string
+        status:
+          type: string
+          enum: [pending, confirmed, cancelled, completed]
+        notes:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        estimateLow:
+          type: string
+          nullable: true
+        estimateHigh:
+          type: string
+          nullable: true
+        language:
+          type: string
+        leadId:
+          type: integer
+          nullable: true
+        reminderSent:
+          type: string
+          nullable: true
+        confirmationSent:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - name
+        - service
+        - preferredDate
+        - timeSlot
+        - status
+        - language
+        - createdAt
+        - updatedAt
+
+    CreateAppointmentBody:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        service:
+          type: string
+        preferredDate:
+          type: string
+        timeSlot:
+          type: string
+        notes:
+          type: string
+        address:
+          type: string
+        estimateLow:
+          type: string
+        estimateHigh:
+          type: string
+        language:
+          type: string
+        leadId:
+          type: integer
+      required:
+        - name
+        - service
+        - preferredDate
+        - timeSlot
+
+    AiPhotoEstimateRequest:
+      type: object
+      properties:
+        images:
+          type: array
+          description: Up to 3 base64 data URLs of project photos (data:image/jpeg;base64,... or raw base64)
+          items:
+            type: string
+          minItems: 1
+          maxItems: 3
+        serviceHint:
+          type: string
+          description: Optional service the visitor selected (roofing, siding, kitchen, bathroom, etc.)
+        language:
+          type: string
+          enum: [en, es, pt]
+        notes:
+          type: string
+          description: Optional free-text context from the visitor
+      required:
+        - images
+
+    AiPhotoEstimateResponse:
+      type: object
+      properties:
+        serviceDetected:
+          type: string
+          description: Service type the model detected from the photo
+        summary:
+          type: string
+          description: Short human-readable summary of what is visible and the project condition
+        scopeBullets:
+          type: array
+          items:
+            type: string
+        lowEstimate:
+          type: number
+          description: Low end of the preliminary cost range in USD
+        highEstimate:
+          type: number
+          description: High end of the preliminary cost range in USD
+        unit:
+          type: string
+          description: Unit the estimate refers to (job, sq ft, linear ft, room)
+        confidence:
+          type: string
+          enum: [low, medium, high]
+        recommendation:
+          type: string
+          description: Next-step recommendation for the homeowner
+        disclaimer:
+          type: string
+        language:
+          type: string
+      required:
+        - summary
+        - lowEstimate
+        - highEstimate
+        - unit
+        - confidence
+        - recommendation
+        - disclaimer
+        - language

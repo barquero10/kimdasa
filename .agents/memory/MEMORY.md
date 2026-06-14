@@ -1,0 +1,1 @@
+- [Expo Mobile Replit Port](expo-mobile-replit-port.md) — kind=mobile workflow needs localPort=5000 (system port), router=expo-domain wires Expo dev domain; Metro must run directly on $PORT

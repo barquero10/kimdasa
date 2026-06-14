@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/dashboard/"
+title = "Kimdasa Admin Dashboard"
+version = "1.0.0"
+id = "artifacts/kimdasa-dashboard"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/dashboard/" ]
+localPort = 19413
+
+[services.development]
+run = "pnpm --filter @workspace/kimdasa-dashboard run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/kimdasa-dashboard", "run", "build" ]
+publicDir = "artifacts/kimdasa-dashboard/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19413"
+BASE_PATH = "/dashboard/"

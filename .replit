@@ -1,0 +1,66 @@
+modules = ["nodejs-24", "python-3.11", "postgresql-16"]
+
+[deployment]
+router = "application"
+deploymentTarget = "autoscale"
+
+[deployment.postBuild]
+args = ["pnpm", "store", "prune"]
+env = { "CI" = "true" }
+
+[workflows]
+runButton = "Project"
+
+[agent]
+stack = "PNPM_WORKSPACE"
+expertMode = true
+integrations = ["google-mail:1.0.0", "google-calendar:1.0.0"]
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 20000
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
+localPort = 5001
+externalPort = 4200
+
+[[ports]]
+localPort = 8080
+externalPort = 8080
+
+[[ports]]
+localPort = 8081
+externalPort = 80
+
+[[ports]]
+localPort = 8082
+externalPort = 3003
+
+[[ports]]
+localPort = 19413
+externalPort = 3001
+
+[[ports]]
+localPort = 21764
+externalPort = 3000
+
+[[ports]]
+localPort = 21765
+externalPort = 3002
+
+[nix]
+channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+PORT = "5000"
+VITE_GA4_ID = "G-YVK0TRYWF4"
+VITE_GOOGLE_ADS_ID = "AW-18152217468"
+
+[userenv.production]
+RESET_ADMIN_PASSWORD = "kimdasa123"

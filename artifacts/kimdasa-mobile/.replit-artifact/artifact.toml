@@ -1,0 +1,26 @@
+kind = "mobile"
+previewPath = "/mobile/"
+title = "Kimdasa Field App"
+version = "1.0.0"
+id = "artifacts/kimdasa-mobile"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+name = "expo"
+paths = [ "/mobile/" ]
+localPort = 5000
+
+[services.development]
+run = "pnpm --filter @workspace/kimdasa-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/kimdasa-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/kimdasa-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "5000"
+BASE_PATH = "/mobile/"
