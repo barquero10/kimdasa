@@ -33,13 +33,17 @@ app.use(express.urlencoded({ extended: true, limit: "30mb" }));
 
 app.use("/api", router);
 
+const runtimeRoot = path.basename(process.cwd()) === "api-server"
+  ? path.resolve(process.cwd(), "../..")
+  : process.cwd();
+
 const webDir = path.resolve(
   process.env["WEB_STATIC_DIR"] ??
-    path.join(process.cwd(), "artifacts/kimdasa-web/dist/public"),
+    path.join(runtimeRoot, "artifacts/kimdasa-web/dist/public"),
 );
 const dashboardDir = path.resolve(
   process.env["DASHBOARD_STATIC_DIR"] ??
-    path.join(process.cwd(), "artifacts/kimdasa-dashboard/dist/public"),
+    path.join(runtimeRoot, "artifacts/kimdasa-dashboard/dist/public"),
 );
 
 if (existsSync(webDir) && existsSync(dashboardDir)) {
