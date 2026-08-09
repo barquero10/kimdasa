@@ -3,10 +3,9 @@ import { useLocation } from "wouter";
 import { trackBookingConversion } from "@/lib/gtag";
 import { Calendar, ChevronLeft, ChevronRight, Clock, CheckCircle, Loader2, User, Phone, Mail, MapPin, StickyNote, Wrench } from "lucide-react";
 import { useLanguage, TRANSLATIONS } from "@/lib/i18n";
+import { apiUrl } from "@/lib/api-base";
 
 const EN_SERVICES = TRANSLATIONS.en.booking.services;
-
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 function formatDate(d: Date): string {
   const y = d.getFullYear();
@@ -85,7 +84,7 @@ export function BookingCalendar({ estimateLow, estimateHigh, leadId, initialName
     setSlots([]);
     setSelectedSlot(null);
     try {
-      const res = await fetch(`${BASE}/api/appointments/slots?date=${dateStr}`);
+      const res = await fetch(apiUrl(`/api/appointments/slots?date=${dateStr}`));
       if (res.ok) {
         const data = await res.json();
         setSlots(data.slots ?? []);
@@ -148,7 +147,7 @@ export function BookingCalendar({ estimateLow, estimateHigh, leadId, initialName
       if (estimateHigh) body.estimateHigh = estimateHigh;
       if (leadId) body.leadId = leadId;
 
-      const res = await fetch(`${BASE}/api/appointments`, {
+      const res = await fetch(apiUrl("/api/appointments"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

@@ -1,34 +1,13 @@
-import { useState, useEffect } from "react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useGetSiteConfig, getGetSiteConfigQueryKey } from "@workspace/api-client-react";
 import { Phone } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { trackPhoneCall } from "@/lib/gtag";
-// Video served from public/ — direct URL, no JS module parse needed
-const heroVideo = "/hero-loop.mp4";
 const heroPoster = "/hero-poster.webp";
-
-// Deferred video — mounts only after page fully loads so the
-// poster image (fast) is the LCP element, not the 838 KB video.
-function useDeferredVideo() {
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      const t = setTimeout(() => setReady(true), 800);
-      return () => clearTimeout(t);
-    }
-    const onLoad = () => setTimeout(() => setReady(true), 800);
-    window.addEventListener("load", onLoad, { once: true });
-    return () => window.removeEventListener("load", onLoad);
-  }, []);
-  return ready;
-}
 
 export function HeroSection() {
   const { data: config } = useGetSiteConfig({ query: { queryKey: getGetSiteConfigQueryKey() } });
   const { t } = useLanguage();
-  const videoReady = useDeferredVideo();
-
   const title = config?.businessName || "Kimdasa Construction";
   const tagline = config?.tagline || t.hero.tagline;
   const phone = config?.phone || "(908) 800-3190";
@@ -61,20 +40,6 @@ export function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover object-center z-0"
           />
         )}
-        {videoReady && (
-          <video
-            src={heroVideo}
-            poster={config?.heroImageUrl || heroPoster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            className="absolute inset-0 w-full h-full object-cover object-center z-[1]"
-            aria-hidden="true"
-          />
-        )}
-
         <m.div
           className="relative z-20 container mx-auto px-4 text-center max-w-4xl"
           initial={{ opacity: 0, y: 40 }}
