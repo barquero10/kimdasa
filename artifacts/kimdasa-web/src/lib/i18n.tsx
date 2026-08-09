@@ -441,7 +441,7 @@ export const TRANSLATIONS = {
       quickLinks: "Quick Links",
       since: "Serving NJ & PA since 2004.",
       allRights: "All rights reserved.",
-      licensed: "Licensed & Insured — NJ Lic #13VH12345 · PA Lic #PA123456",
+      licensed: "Licensed & Insured in NJ & PA",
       countiesSuffix: "Counties",
       links: {
         gallery: "Project Gallery",
@@ -883,7 +883,7 @@ export const TRANSLATIONS = {
       quickLinks: "Enlaces rápidos",
       since: "Sirviendo NJ y PA desde 2004.",
       allRights: "Todos los derechos reservados.",
-      licensed: "Licenciado y asegurado — NJ Lic #13VH12345 · PA Lic #PA123456",
+      licensed: "Licenciado y asegurado en NJ y PA",
       countiesSuffix: "Condados",
       links: {
         gallery: "Galería de proyectos",
@@ -1325,7 +1325,7 @@ export const TRANSLATIONS = {
       quickLinks: "Links rápidos",
       since: "Atendendo NJ e PA desde 2004.",
       allRights: "Todos os direitos reservados.",
-      licensed: "Licenciado e segurado — NJ Lic #13VH12345 · PA Lic #PA123456",
+      licensed: "Licenciado e segurado em NJ e PA",
       countiesSuffix: "Condados",
       links: {
         gallery: "Galeria de projetos",

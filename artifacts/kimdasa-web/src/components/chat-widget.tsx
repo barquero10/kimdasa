@@ -5,6 +5,7 @@ import { MessageSquare, X, Send, Loader2, Volume2, VolumeX, Mic, MicOff, Camera,
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/lib/i18n";
+import { apiUrl } from "@/lib/api-base";
 
 type Message = {
   role: "user" | "assistant";
@@ -110,7 +111,7 @@ export function ChatWidget() {
       stopAudio();
       setLoadingTtsIndex(index);
       try {
-        const res = await fetch("/api/ai/tts", {
+        const res = await fetch(apiUrl("/api/ai/tts"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text, lang }),
@@ -330,7 +331,7 @@ export function ChatWidget() {
           });
           reader.readAsDataURL(blob);
           const audioBase64 = await base64Promise;
-          const res = await fetch("/api/ai/transcribe", {
+          const res = await fetch(apiUrl("/api/ai/transcribe"), {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ audioBase64, mimeType: blob.type, lang }),

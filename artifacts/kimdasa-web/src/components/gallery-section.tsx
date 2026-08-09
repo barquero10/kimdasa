@@ -2,17 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { MapPin, Play, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
-import sidingBlueVideo from "@/assets/projects/01-siding-blue.mp4";
 import sidingBluePoster from "@/assets/projects/01-siding-blue.webp";
-import twoStoryCreamVideo from "@/assets/projects/02-two-story-cream.mp4";
 import twoStoryCreamPoster from "@/assets/projects/02-two-story-cream.webp";
-import boardBattenVideo from "@/assets/projects/03-board-batten.mp4";
 import boardBattenPoster from "@/assets/projects/03-board-batten.webp";
-import stoneVeneerVideo from "@/assets/projects/04-stone-veneer.mp4";
 import stoneVeneerPoster from "@/assets/projects/04-stone-veneer.webp";
-import spaBathVideo from "@/assets/projects/05-spa-bath.mp4";
 import spaBathPoster from "@/assets/projects/05-spa-bath.webp";
-import marbleBathVideo from "@/assets/projects/06-marble-bath.mp4";
 import marbleBathPoster from "@/assets/projects/06-marble-bath.webp";
 import sidingBlueBefore from "@/assets/projects/01-siding-blue-before.webp";
 import sidingBlueAfter from "@/assets/projects/01-siding-blue-after.webp";
@@ -32,7 +26,7 @@ const GALLERY_PROJECTS = [
     key: "sidingBlue" as const,
     category: { en: "Exterior", es: "Exterior", pt: "Exterior" },
     location: { en: "New Jersey", es: "Nueva Jersey", pt: "Nova Jersey" },
-    video: sidingBlueVideo,
+    video: undefined,
     poster: sidingBluePoster,
     before: sidingBlueBefore,
     after: sidingBlueAfter,
@@ -42,7 +36,7 @@ const GALLERY_PROJECTS = [
     key: "twoStoryCream" as const,
     category: { en: "Exterior", es: "Exterior", pt: "Exterior" },
     location: { en: "New Jersey", es: "Nueva Jersey", pt: "Nova Jersey" },
-    video: twoStoryCreamVideo,
+    video: undefined,
     poster: twoStoryCreamPoster,
     before: twoStoryCreamBefore,
     after: twoStoryCreamAfter,
@@ -52,7 +46,7 @@ const GALLERY_PROJECTS = [
     key: "boardBatten" as const,
     category: { en: "Exterior", es: "Exterior", pt: "Exterior" },
     location: { en: "Pennsylvania", es: "Pensilvania", pt: "Pensilvânia" },
-    video: boardBattenVideo,
+    video: undefined,
     poster: boardBattenPoster,
     before: boardBattenBefore,
     after: boardBattenAfter,
@@ -62,7 +56,7 @@ const GALLERY_PROJECTS = [
     key: "stoneVeneer" as const,
     category: { en: "Exterior", es: "Exterior", pt: "Exterior" },
     location: { en: "New Jersey", es: "Nueva Jersey", pt: "Nova Jersey" },
-    video: stoneVeneerVideo,
+    video: undefined,
     poster: stoneVeneerPoster,
     before: stoneVeneerBefore,
     after: stoneVeneerAfter,
@@ -72,7 +66,7 @@ const GALLERY_PROJECTS = [
     key: "spaBath" as const,
     category: { en: "Bathroom", es: "Baño", pt: "Banheiro" },
     location: { en: "New Jersey", es: "Nueva Jersey", pt: "Nova Jersey" },
-    video: spaBathVideo,
+    video: undefined,
     poster: spaBathPoster,
     before: spaBathBefore,
     after: spaBathAfter,
@@ -82,7 +76,7 @@ const GALLERY_PROJECTS = [
     key: "marbleBath" as const,
     category: { en: "Bathroom", es: "Baño", pt: "Banheiro" },
     location: { en: "Pennsylvania", es: "Pensilvania", pt: "Pensilvânia" },
-    video: marbleBathVideo,
+    video: undefined,
     poster: marbleBathPoster,
     before: marbleBathBefore,
     after: marbleBathAfter,
@@ -217,7 +211,7 @@ function BeforeAfterCard({
           </svg>
         </div>
 
-        <button
+        {project.video && <button
           type="button"
           onClick={onOpen}
           onPointerDown={(e) => e.stopPropagation()}
@@ -226,7 +220,7 @@ function BeforeAfterCard({
         >
           <Play className="w-3 h-3" fill="currentColor" />
           {t.gallery.watchVideo}
-        </button>
+        </button>}
       </div>
 
       <div className="p-4 border-t border-border bg-background">
@@ -402,7 +396,7 @@ export default function GallerySection() {
         </p>
       </div>
 
-      {openIndex !== null && (
+      {openIndex !== null && GALLERY_PROJECTS[openIndex].video && (
         <VideoModal project={GALLERY_PROJECTS[openIndex]} onClose={() => setOpenIndex(null)} />
       )}
     </section>

@@ -91,11 +91,11 @@ Roofing, Vinyl Siding, Hardie Siding, Gutters, Soffit, Fascia, Window Capping, W
 - Market prices cover New Jersey and Pennsylvania regions
 - Admin password is set via ADMIN_SEED_PASSWORD env var at seed time — change it via the admin UI after first login
 
-## Dashboard credentials
+## Dashboard access
 
-- URL: https://623240e0-206f-4ef9-8d51-4de6daffbec1-00-28te67wg9luw3.riker.replit.dev/dashboard
-- Email: admin@kimdasa.com
-- Password: Kimdasa2025!
+- Email: `admin@kimdasa.com`
+- Set the password securely with the `ADMIN_SEED_PASSWORD` secret when seeding.
+- Never commit passwords or live deployment URLs to this repository.
 
 ## Gotchas
 
